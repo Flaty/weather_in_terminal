@@ -1,15 +1,21 @@
 import requests
 
-article_id = {
-    'Лондон',
-    'svo',
-    'Череповец'
-}
+if __name__ == '__main__':
 
-url_template = 'https://wttr.in/{}?lang=ru&T&n=3&M'
-
-for id in article_id:
-    url = url_template.format(id)
-    response = requests.get(url)
-    response.raise_for_status()
-    print(response.text)
+    cities = {
+        'Лондон',
+        'svo',
+        'Череповец'
+    }
+    payload = {
+        'lang': 'ru',
+        'n': '3',
+        'M': ' ',
+        't': ' ',
+        }
+    url_template = 'https://wttr.in/{}'
+    for city in cities:
+        url = url_template.format(city)
+        response = requests.get(url, params=payload)
+        response.raise_for_status()
+        print(response.text)
